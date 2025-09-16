@@ -1,0 +1,71 @@
+# Proyecto Dockerizado Simple
+
+Este proyecto contiene dos aplicaciones web simples hechas con Node.js y Express.  
+El objetivo es **demostrar cómo se puede dockerizar una aplicación web y levantarla con Docker Compose**.  
+
+---
+
+## Estructura del proyecto
+
+/proyecto
+/app1
+    index.js
+    package.json
+    Dockerfile
+/app2
+    index.js
+    package.json
+    Dockerfile
+docker-compose.yml
+
+- **app1**: aplicación web simple corriendo en `localhost:3001`  
+- **app2**: aplicación web simple corriendo en `localhost:3002`  
+- **docker-compose.yml**: archivo para levantar ambas apps con un solo comando 
+
+---
+
+## Uso en local (sin Docker)
+
+Si quieres ejecutar las apps normalmente en tu máquina, necesitas instalar Node.js y npm, y luego instalar las dependencias en cada app:
+
+```bash
+cd app1
+npm install
+npm start```
+```  
+
+```bash
+cd app2
+npm install
+npm start
+```  
+
+- App1 estará disponible en http://localhost:3001
+- App2 estará disponible en http://localhost:3002
+
+---
+
+## Uso con Docker
+
+Si tienes Docker y Docker Compose instalados, puedes levantar ambas apps sin instalar Node.js en tu máquina:
+
+```bash
+cd proyecto
+docker-compose up --build
+```  
+
+- Docker construirá las imágenes de cada app y levantará los contenedores.
+- App1 estará disponible en http://localhost:3001
+- App2 estará disponible en http://localhost:3002
+
+Para detener los contenedores:
+
+```bash
+docker-compose down
+```  
+
+---
+
+## Notas
+- Las carpetas node_modules no están incluidas en el repositorio, porque Docker se encarga de instalar las dependencias dentro de los contenedores.
+- Este proyecto es solo una implementación simple de Docker para aprendizaje y demostración.
