@@ -1,71 +1,90 @@
-# Proyecto Dockerizado Simple
+# Dockerizado de Aplicaciones Web: Un Ejemplo Práctico 🐳
 
-Este proyecto contiene dos aplicaciones web simples hechas con Node.js y Express.  
-El objetivo es **demostrar cómo se puede dockerizar una aplicación web y levantarla con Docker Compose**.  
+Este proyecto es un ejemplo sencillo y práctico de cómo **dockerizar dos aplicaciones web con Node.js y levantarlas eficientemente usando Docker Compose**. Es una excelente forma de aprender los fundamentos de la orquestación de contenedores.
 
----
+-----
 
-## Estructura del proyecto
+## Estructura del Proyecto
 
+La organización del repositorio es clara y fácil de seguir:
+
+```
 /proyecto
-/app1
-    index.js
-    package.json
-    Dockerfile
-/app2
-    index.js
-    package.json
-    Dockerfile
-docker-compose.yml
+├── /app1
+│   ├── index.js
+│   ├── package.json
+│   └── Dockerfile
+├── /app2
+│   ├── index.js
+│   ├── package.json
+│   └── Dockerfile
+└── docker-compose.yml
+```
 
-- **app1**: aplicación web simple corriendo en `localhost:3001`  
-- **app2**: aplicación web simple corriendo en `localhost:3002`  
-- **docker-compose.yml**: archivo para levantar ambas apps con un solo comando 
+  - **`app1`**: Una aplicación web básica de Node.js que se ejecuta en el puerto `3001`.
+  - **`app2`**: Otra aplicación web simple de Node.js, corriendo en el puerto `3002`.
+  - **`docker-compose.yml`**: El archivo clave que define y gestiona los servicios para levantar ambas aplicaciones con un solo comando.
 
----
+-----
 
-## Uso en local (sin Docker)
+## Guía de Uso
 
-Si quieres ejecutar las apps normalmente en tu máquina, necesitas instalar Node.js y npm, y luego instalar las dependencias en cada app:
+### Opción 1: Ejecutar sin Docker (Local)
 
-```bash
-cd app1
-npm install
-npm start```
-```  
+Si prefieres ejecutar las aplicaciones de forma tradicional, sigue estos pasos. **Asegúrate de tener Node.js y npm instalados**.
 
-```bash
-cd app2
-npm install
-npm start
-```  
+1.  Navega a cada directorio e instala las dependencias:
 
-- App1 estará disponible en http://localhost:3001
-- App2 estará disponible en http://localhost:3002
+    ```bash
+    cd app1
+    npm install
+    npm start
+    ```
 
----
+2.  En una nueva terminal, haz lo mismo para la segunda aplicación:
 
-## Uso con Docker
+    ```bash
+    cd app2
+    npm install
+    npm start
+    ```
 
-Si tienes Docker y Docker Compose instalados, puedes levantar ambas apps sin instalar Node.js en tu máquina:
+<!-- end list -->
 
-```bash
-cd proyecto
-docker-compose up --build
-```  
+  - **App1** estará disponible en `http://localhost:3001`
+  - **App2** estará disponible en `http://localhost:3002`
 
-- Docker construirá las imágenes de cada app y levantará los contenedores.
-- App1 estará disponible en http://localhost:3001
-- App2 estará disponible en http://localhost:3002
+-----
 
-Para detener los contenedores:
+### Opción 2: El Camino Docker (Recomendado)
 
-```bash
-docker-compose down
-```  
+Esta es la forma más limpia y portátil. **Necesitas tener Docker y Docker Compose instalados**.
 
----
+1.  Desde el directorio raíz del proyecto, ejecuta este comando:
+    ```bash
+    docker-compose up --build
+    ```
+    Docker se encargará de construir las imágenes y levantar los contenedores de ambas aplicaciones, ¡sin necesidad de instalar Node.js en tu máquina\!
 
-## Notas
-- Las carpetas node_modules no están incluidas en el repositorio, porque Docker se encarga de instalar las dependencias dentro de los contenedores.
-- Este proyecto es solo una implementación simple de Docker para aprendizaje y demostración.
+<!-- end list -->
+
+  - **App1** estará disponible en `http://localhost:3001`
+  - **App2** estará disponible en `http://localhost:3002`
+
+<!-- end list -->
+
+2.  Para detener y eliminar los contenedores, simplemente presiona `Ctrl+C` en la terminal o ejecuta:
+    ```bash
+    docker-compose down
+    ```
+
+-----
+
+## Consideraciones Adicionales
+
+  - Las carpetas **`node_modules` no están incluidas** en el repositorio. Docker se encarga de instalar estas dependencias dentro de los contenedores, garantizando que el entorno sea consistente para todos los desarrolladores.
+  - Este proyecto está diseñado con fines de **aprendizaje y demostración**. Es una base sólida para entender cómo **Docker simplifica los flujos de trabajo de desarrollo** y despliegue.
+
+-----
+
+¡Espero que este `README` te sea útil\! ¿Hay algo más en lo que pueda ayudarte con tu proyecto?
