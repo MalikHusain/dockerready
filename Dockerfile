@@ -1,12 +1,19 @@
-# Root Dockerfile for Render deployment
-FROM docker/compose:latest
+﻿FROM node:18-alpine
 
 WORKDIR /app
 
-COPY docker-compose.yml .
+COPY app1/package*.json ./app1/
+COPY app2/package*.json ./app2/
+
+RUN cd app1 && npm install
+RUN cd app2 && npm install
+
 COPY app1/ ./app1/
 COPY app2/ ./app2/
 
-EXPOSE 3001 3002
+EXPOSE 3001
+EXPOSE 3002
 
-CMD ["docker-compose", "up"]
+RUN npm install -g concurrently
+
+CMD [\"concurrently\", \"npm run --prefix app1 start\", \"npm run --prefix app2 start\"]
