@@ -14,6 +14,5 @@ COPY app2/ ./app2/
 EXPOSE 3001
 EXPOSE 3002
 
-RUN npm install -g concurrently
-
-CMD [\"concurrently\", \"npm run --prefix app1 start\", \"npm run --prefix app2 start\"]
+# Don't install globally - use npx directly
+CMD ["npx", "concurrently", "npm run --prefix app1 start", "npm run --prefix app2 start"]
